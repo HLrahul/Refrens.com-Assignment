@@ -7,6 +7,7 @@ import {
   Image,
   Stack,
   Text,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 
 import { css } from "@emotion/react";
@@ -27,8 +28,10 @@ const TextStyles = css`
 export default function CharacterCard({ character }: { character: Character }) {
   const Status = character.status === "Alive" ? "green.500" : "red.500";
 
+  const CardSize = useBreakpointValue({ base: "sm", md: "md" });
+
   return (
-    <Card direction={{ base: "column", sm: "row" }} size="md" css={CardStyles}>
+    <Card direction={{ base: "column", sm: "row" }} size={CardSize} css={CardStyles}>
       <Image
         objectFit="cover"
         maxW={{ base: "100%", sm: "200px" }}

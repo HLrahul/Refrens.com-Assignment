@@ -44,11 +44,8 @@ export const CardBodyStyles = css`
 
 export const CardFooterStyles = css`
   display: flex;
+  align-items: center;
+  justify-content: center;
+
   gap: 0.5rem;
 `;
-
-export const FlexStyles = css`
-  @media (max-width: 768px) {
-    display: none;
-  }
-`
