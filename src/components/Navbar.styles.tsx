@@ -46,3 +46,9 @@ export const CardFooterStyles = css`
   display: flex;
   gap: 0.5rem;
 `;
+
+export const FlexStyles = css`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`

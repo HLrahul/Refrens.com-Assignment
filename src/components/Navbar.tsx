@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useBreakpointValue, useDisclosure } from "@chakra-ui/react";
+import { Flex, useBreakpointValue, useDisclosure } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
 import {
@@ -12,10 +12,10 @@ import {
   Stack,
 } from "@chakra-ui/react";
 
-import { Card, CardHeader, CardFooter } from "@chakra-ui/react";
+import { Card, CardBody, CardHeader, CardFooter } from "@chakra-ui/react";
 import ThemeToggle from "./ui/ThemeToggle";
 
-import { CardStyles, HeaderStyles, CardFooterStyles } from "./Navbar.styles";
+import { CardStyles, HeaderStyles, CardFooterStyles, FlexStyles } from "./Navbar.styles";
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -25,6 +25,14 @@ export default function Navbar() {
   return (
     <Card direction={{ base: "row" }} size="md" css={CardStyles}>
       <CardHeader css={HeaderStyles}>Rick and Morty</CardHeader>
+
+      <CardBody>
+        <Flex gap="4" css={FlexStyles}>
+          <Link to="/characters">Characters</Link>
+          <Link to="/locations">Locations</Link>
+          <Link to="/episodes">Episodes</Link>
+        </Flex>
+      </CardBody>
 
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
@@ -56,7 +64,7 @@ export default function Navbar() {
           ml="auto"
           mr={2}
           mt={marginTop}
-          display={{ base: "block", md: "none" }}
+          display={{ base: "block", md: "none"}}
           onClick={onOpen}
         />
       </CardFooter>
