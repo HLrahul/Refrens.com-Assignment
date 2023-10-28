@@ -1,5 +1,10 @@
-import { SimpleGrid } from "@chakra-ui/layout";
+import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+
+import axios from "axios";
+
+import { SimpleGrid } from "@chakra-ui/layout";
+import { useBreakpointValue } from "@chakra-ui/react";
 
 import { useCharactersStore } from "../store/charactersStore";
 import { Character } from "../types/index";
@@ -15,9 +20,8 @@ export default function CharactersPage() {
     const { data, isLoading, error } = useQuery({
         queryKey: ["characters"],
         queryFn: async() => {
-            const response = await fetch("https://rickandmortyapi.com/api/character");
-            const data = await response.json();
-            return data.results;
+            const response = await axios.get("https://rickandmortyapi.com/api/character");
+            return response.data.results;
         } 
     })
 
@@ -25,14 +29,18 @@ export default function CharactersPage() {
         console.log(error);
     }
     if (isLoading) {
-        return <div>Loading...</div>
+        console.log("Loading...");
     }
-    if (data) {
+    useEffect(() => {
+      if (data) {
         setCharacters(data);
-    }
+      }
+    }, [data, setCharacters]);
+
+    const columns = useBreakpointValue({ base: 1, lg: 2 });
 
     return (
-        <SimpleGrid columns={2} spacing={10}>
+        <SimpleGrid columns={columns} spacing={10}>
             { 
                 characters.map((character: Character) => (
                     <CharacterCard key={character.id} character={character} />

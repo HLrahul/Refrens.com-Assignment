@@ -1,56 +1,64 @@
 import { Link } from "react-router-dom";
-import { css } from "@emotion/react";
+import { useBreakpointValue, useDisclosure } from "@chakra-ui/react";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
-import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
+import {
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  DrawerHeader,
+  DrawerBody,
+  Stack,
+} from "@chakra-ui/react";
 
+import { Card, CardHeader, CardFooter } from "@chakra-ui/react";
 import ThemeToggle from "./ui/ThemeToggle";
 
-const CardStyles = css`
-  height: 10vh;
-  width: 100%;
-  border-radius: 0%;
-  top: 0;
-  position: sticky;
-
-  margin: auto;
-
-  align-items: center;
-  justify-content: center;
-`;
-
-const HeaderStyles = css`
-  height: inherit;
-  width: auto;
-  align-items: center;
-  justify-content: center;
-  margin-top: -1rem;
-  font-size: 1.5rem;
-  font-weight: bold;
-`;
-
-const CardBodyStyles = css`
-  display: flex;
-  gap: 1rem;
-`;
-
-const CardFooterStyles = css`
-  display: flex;
-  gap: 0.5rem;
-`;
+import { CardStyles, HeaderStyles, CardFooterStyles } from "./Navbar.styles";
 
 export default function Navbar() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const marginTop = useBreakpointValue({ base: "1", md: "2" });
+
   return (
     <Card direction={{ base: "row" }} size="md" css={CardStyles}>
       <CardHeader css={HeaderStyles}>Rick and Morty</CardHeader>
 
-      <CardBody css={CardBodyStyles}>
-        <Link to="/characters">Characters</Link>
-        <Link to="/locations">Locations</Link>
-        <Link to="/episodes">Episodes</Link>
-      </CardBody>
+      <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Menu</DrawerHeader>
+          <DrawerBody>
+            <Stack spacing={4}>
+              <Link to="/characters" onClick={onClose}>
+                Characters
+              </Link>
+              <Link to="/locations" onClick={onClose}>
+                Locations
+              </Link>
+              <Link to="/episodes" onClick={onClose}>
+                Episodes
+              </Link>
+            </Stack>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
 
       <CardFooter css={CardFooterStyles}>
         <ThemeToggle />
+
+        <HamburgerIcon
+          w={6}
+          h={6}
+          ml="auto"
+          mr={2}
+          mt={marginTop}
+          display={{ base: "block", md: "none" }}
+          onClick={onOpen}
+        />
       </CardFooter>
     </Card>
   );

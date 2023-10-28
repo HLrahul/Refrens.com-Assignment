@@ -1,9 +1,11 @@
 import { useColorMode } from "@chakra-ui/color-mode";
-import { IconButton } from "@chakra-ui/react";
+import { IconButton, useBreakpointValue } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 export default function ThemeToggle() {
   const { colorMode, toggleColorMode } = useColorMode();
+
+  const size = useBreakpointValue({ base: "sm", md: "md" });
 
   return (
     <div>
@@ -11,6 +13,7 @@ export default function ThemeToggle() {
         aria-label="Toggle theme"
         icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
         onClick={toggleColorMode}
+        size={size}
       />
     </div>
   );
