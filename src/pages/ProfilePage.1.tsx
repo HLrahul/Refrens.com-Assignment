@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { Character, Episode, Resident } from "../types";
+import { Character, Location, Episode, Resident } from "../types";
 import {
   Box,
   Button,
@@ -51,7 +51,7 @@ export default function ProfilePage() {
     if (character) {
       fetchLocation(character.location.url)
         .then((data) => {
-          setLocation({ location: data });
+          setLocation(data);
           return data.residents;
         })
         .then((residentUrls: string[]) => {
@@ -171,7 +171,9 @@ export default function ProfilePage() {
               </Heading>
               <Text>{location && location.dimension}</Text>
             </Box>
+          </Flex>
 
+          <Flex gap="5">
             <Box flex="1 1 50%">
               <Button onClick={residentsDisclosure.onOpen}>Residents</Button>
 
@@ -198,9 +200,7 @@ export default function ProfilePage() {
                 </ModalContent>
               </Modal>
             </Box>
-          </Flex>
 
-          <Flex gap="5">
             <Box flex="1 1 50%">
               <Button onClick={episodesDisclosure.onOpen}>Episodes</Button>
 
