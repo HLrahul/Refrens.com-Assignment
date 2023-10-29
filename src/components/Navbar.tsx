@@ -25,13 +25,19 @@ export default function Navbar() {
 
   return (
     <Card direction={{ base: "row" }} size="md" css={CardStyles}>
-      <CardHeader css={CardHeaderStyles}>Rick and Morty</CardHeader>
+      <Link to="/">
+        <CardHeader css={CardHeaderStyles}>Rick and Morty</CardHeader>
+      </Link>
 
       <CardBody css={CardBodyStyles}>
         <Flex gap="4" display={DisplayProp}>
           <Link to="/characters">Characters</Link>
-          <Link to="/locations">Locations</Link>
-          <Link to="/episodes">Episodes</Link>
+          <Link to="/locations" style={{ pointerEvents: "none", opacity: 0.5 }}>
+            Locations
+          </Link>
+          <Link to="/episodes" style={{ pointerEvents: "none", opacity: 0.5 }}>
+            Episodes
+          </Link>
         </Flex>
       </CardBody>
 
@@ -45,10 +51,18 @@ export default function Navbar() {
               <Link to="/characters" onClick={onClose}>
                 Characters
               </Link>
-              <Link to="/locations" onClick={onClose}>
+              <Link
+                to="/locations"
+                onClick={onClose}
+                style={{ pointerEvents: "none", opacity: 0.5 }}
+              >
                 Locations
               </Link>
-              <Link to="/episodes" onClick={onClose}>
+              <Link
+                to="/episodes"
+                onClick={onClose}
+                style={{ pointerEvents: "none", opacity: 0.5 }}
+              >
                 Episodes
               </Link>
             </Stack>

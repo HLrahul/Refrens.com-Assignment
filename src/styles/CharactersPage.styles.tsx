@@ -19,7 +19,7 @@ export const ConatinerStyles = css`
     gap: 1rem;
 
     @media (max-width: 768px) {
-        height: 32vh;
+        height: 50vh;
     }
 `
 
