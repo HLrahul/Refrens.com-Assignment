@@ -39,3 +39,12 @@ export interface Episode {
   name: string;
   url: string;
 }
+
+export type FilterProps = {
+  status: string;
+  location: string;
+  episode: string;
+  gender: string;
+  species: string;
+  type: string;
+};

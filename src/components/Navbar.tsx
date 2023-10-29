@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Flex, Input, InputGroup, InputLeftElement, useBreakpointValue, useDisclosure } from "@chakra-ui/react";
-import { HamburgerIcon, Search2Icon } from "@chakra-ui/icons";
+import { Flex, useBreakpointValue, useDisclosure } from "@chakra-ui/react";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
 import {
   Drawer,
@@ -16,24 +15,13 @@ import {
 import { Card, CardBody, CardHeader, CardFooter } from "@chakra-ui/react";
 import ThemeToggle from "./ui/ThemeToggle";
 
-import { CardStyles, CardHeaderStyles, CardFooterStyles, InputLeftElementStyles, CardBodyStyles, HamburgerIconStyles, InputStyle } from "../styles/Navbar.styles";
-import { useSearchQueryStore } from "../store/searchQueryStore";
+import { CardStyles, CardHeaderStyles, CardFooterStyles, CardBodyStyles, HamburgerIconStyles } from "../styles/Navbar.styles";
 
 export default function Navbar() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const setSearchQueryState = useSearchQueryStore((state) => state.setSearchQuery);
-
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const query = event.target.value;
-    setSearchQuery(query);
-    setSearchQueryState(query);
-  };
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const marginTop = useBreakpointValue({ base: "1", md: "2" });
   const DisplayProp = useBreakpointValue({ base: "none", md: "flex" });
-  const InputSize = useBreakpointValue({ base: "sm", md: "md" });
 
   return (
     <Card direction={{ base: "row" }} size="md" css={CardStyles}>
@@ -69,20 +57,6 @@ export default function Navbar() {
       </Drawer>
 
       <CardFooter css={CardFooterStyles}>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none" css={InputLeftElementStyles}>
-            <Search2Icon color="gray.300" fontSize={InputSize} />
-          </InputLeftElement>
-          <Input
-            css={InputStyle}
-            size={InputSize}
-            type="text"
-            placeholder="Search"
-            value={searchQuery}
-            onChange={handleSearch}
-          />
-        </InputGroup>
-
         <ThemeToggle />
 
         <HamburgerIcon

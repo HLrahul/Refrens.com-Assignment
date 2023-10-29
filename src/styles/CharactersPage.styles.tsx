@@ -16,6 +16,7 @@ export const ConatinerStyles = css`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
 
     @media (max-width: 768px) {
         height: 32vh;
@@ -25,7 +26,6 @@ export const ConatinerStyles = css`
 export const HeadingStyles = css`
     text-align: center;
 
-    margin-bottom: 1rem;
     font-size: 2rem;  
     
     @media (min-width: 768px) {

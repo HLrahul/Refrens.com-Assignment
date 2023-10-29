@@ -33,11 +33,11 @@ export default function CharacterCard({ character }: { character: Character }) {
   const CardSize = useBreakpointValue({ base: "sm", md: "md" });
 
   return (
-    <Link to= { `/profile/${character.id}` }>
+    <Link to={`/profile/${character.id}`}>
       <Card
         direction={{ base: "column", sm: "row" }}
         size={CardSize}
-        css={CardStyles}
+        css={[CardStyles, { height: "100%" }]}
       >
         <Image
           objectFit="cover"

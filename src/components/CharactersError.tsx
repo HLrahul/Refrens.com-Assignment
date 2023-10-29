@@ -1,5 +1,7 @@
 interface Props {
-  error: Error;
+  error?: {
+    message?: string;
+  };
 }
 
 const CharactersError = ({ error }: Props) => {
@@ -14,7 +16,7 @@ const CharactersError = ({ error }: Props) => {
         alignItems: "center",
       }}
     >
-      Error: {error.message}
+      Error: {error?.message}
     </div>
   );
 };

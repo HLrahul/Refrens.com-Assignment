@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   Button,
   Flex,
@@ -14,39 +14,45 @@ import {
   Select,
   useDisclosure,
 } from "@chakra-ui/react";
+import { FilterProps } from "../types";
 
-type FilterProps = {
-  status: string;
-  location: string;
-  episode: string;
-  gender: string;
-  species: string;
-  type: string;
+type CharacterFiltersProps = {
+  filter: FilterProps;
+  onFilterChange: (newFilter: FilterProps) => void;
 };
 
-const CharacterFilters = () => {
-  const [filter, setFilter] = useState<FilterProps>({
-    status: "",
-    location: "",
-    episode: "",
-    gender: "",
-    species: "",
-    type: "",
-  });
+const CharacterFilters = ({
+  filter,
+  onFilterChange,
+}: CharacterFiltersProps) => {
+  const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    onFilterChange({ ...filter, status: event.target.value });
+  };
+
+  const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onFilterChange({ ...filter, location: event.target.value });
+  };
+
+  const handleEpisodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onFilterChange({ ...filter, episode: event.target.value });
+  };
+
+  const handleGenderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    onFilterChange({ ...filter, gender: event.target.value });
+  };
+
+  const handleSpeciesChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    onFilterChange({ ...filter, species: event.target.value });
+  };
+
+  const handleTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onFilterChange({ ...filter, type: event.target.value });
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSelectChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
-    const { name, value } = event.target;
-    setFilter((prevFilter) => ({ ...prevFilter, [name]: value }));
-  };
-
-  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const { name, value } = event.target;
-    setFilter((prevFilter) => ({ ...prevFilter, [name]: value }));
-  };
-
   const handleFilterReset = () => {
-    setFilter({
+    onFilterChange({
       status: "",
       location: "",
       episode: "",
@@ -93,7 +99,7 @@ const CharacterFilters = () => {
                       <Select
                         name="status"
                         value={filter.status}
-                        onChange={handleSelectChange}
+                        onChange={handleStatusChange}
                         size="sm"
                       >
                         <option value="">All</option>
@@ -110,7 +116,7 @@ const CharacterFilters = () => {
                       <Input
                         name="location"
                         value={filter.location}
-                        onChange={handleInputChange}
+                        onChange={handleLocationChange}
                         size="sm"
                       />
                     </FormControl>
@@ -122,7 +128,7 @@ const CharacterFilters = () => {
                       <Input
                         name="episode"
                         value={filter.episode}
-                        onChange={handleInputChange}
+                        onChange={handleEpisodeChange}
                         size="sm"
                       />
                     </FormControl>
@@ -136,7 +142,7 @@ const CharacterFilters = () => {
                       <Select
                         name="gender"
                         value={filter.gender}
-                        onChange={handleSelectChange}
+                        onChange={handleGenderChange}
                         size="sm"
                       >
                         <option value="">All</option>
@@ -154,7 +160,7 @@ const CharacterFilters = () => {
                       <Input
                         name="species"
                         value={filter.species}
-                        onChange={handleInputChange}
+                        onChange={handleSpeciesChange}
                         size="sm"
                       />
                     </FormControl>
@@ -166,7 +172,7 @@ const CharacterFilters = () => {
                       <Input
                         name="type"
                         value={filter.type}
-                        onChange={handleInputChange}
+                        onChange={handleTypeChange}
                         size="sm"
                       />
                     </FormControl>
