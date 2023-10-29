@@ -24,6 +24,15 @@ import {
 export default function CharactersPage() {
   const searchQuery = useSearchQueryStore((state) => state.searchQuery);
 
+  const filters = {
+    status: "",
+    gender: "",
+    species: "",
+    location: "",
+    episode: "",
+    type: "",
+  };
+
   const {
     characters,
     isLoading,
@@ -31,7 +40,7 @@ export default function CharactersPage() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useCharacters(searchQuery);
+  } = useCharacters(searchQuery, filters);
 
   useEffect(() => {
     const handleScroll = () => {

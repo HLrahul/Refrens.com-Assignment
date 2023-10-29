@@ -1,7 +1,6 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-
-import { Character, Location, Episode, Resident } from "../types";
+import { Character, Episode, Resident } from "../types";
 import {
   Box,
   Button,
@@ -25,7 +24,12 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { TextStyles } from "../styles/ProfilePage.styles";
-import { fetchCharacter, fetchEpisodes, fetchLocation, fetchResidents } from "../api/api";
+import {
+  fetchCharacter,
+  fetchEpisodes,
+  fetchLocation,
+  fetchResidents,
+} from "../api/api";
 
 export default function ProfilePage() {
   const { id } = useParams<{ id: string }>();
@@ -47,7 +51,7 @@ export default function ProfilePage() {
     if (character) {
       fetchLocation(character.location.url)
         .then((data) => {
-          setLocation(data);
+          setLocation({ location: data });
           return data.residents;
         })
         .then((residentUrls: string[]) => {

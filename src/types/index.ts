@@ -19,3 +19,23 @@ export type Character = {
   url: string;
   created: string;
 };
+
+export interface Location {
+  id: number;
+  name: string;
+  type: string;
+  dimension: string;
+  residents: string[];
+  url: string;
+  created: string;
+}
+
+export interface Resident {
+  name: string;
+  url: string;
+}
+
+export interface Episode {
+  name: string;
+  url: string;
+}

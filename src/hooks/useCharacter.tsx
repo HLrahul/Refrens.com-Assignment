@@ -5,7 +5,28 @@ import axios from "axios";
 
 import { Character } from "../types/index";
 
-export const useCharacters = (searchQuery: string) => {
+type UseCharactersReturnType = {
+  characters: Character[];
+  error: unknown;
+  isLoading: boolean;
+  fetchNextPage: () => void;
+  hasNextPage: boolean;
+  isFetchingNextPage: boolean;
+};
+
+type FilterProps = {
+  status: string;
+  location: string;
+  episode: string;
+  gender: string;
+  species: string;
+  type: string;
+};
+
+export const useCharacters = (
+  searchQuery: string,
+  filter: FilterProps
+): UseCharactersReturnType => {
   const fetchCharacters = async ({ pageParam = 1 }) => {
     const response = await axios.get(
       `https://rickandmortyapi.com/api/character?page=${pageParam}`
@@ -29,9 +50,21 @@ export const useCharacters = (searchQuery: string) => {
 
   const characters = data?.pages?.map((page) => page.results).flat() || [];
 
-  const filteredCharacters = characters.filter((character: Character) =>
-    character.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredCharacters = characters
+    .filter((character: Character) =>
+      character.name.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .filter((character: Character) => {
+      const { status, location, episode, gender, species, type } = filter;
+      return (
+        (status === "" || character.status === status) &&
+        (location === "" || character.location.name === location) &&
+        (episode === "" || character.episode.includes(episode)) &&
+        (gender === "" || character.gender === gender) &&
+        (species === "" || character.species === species) &&
+        (type === "" || character.type === type)
+      );
+    });
 
   useEffect(() => {
     fetchNextPage();

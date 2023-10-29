@@ -4,9 +4,9 @@ import { SimpleGrid } from "@chakra-ui/layout";
 import { Character } from "../types/index";
 
 import { GridStyles } from "../styles/CharactersPage.styles";
+import { TextStyles } from "../styles/CharacterList.styles";
 
 import CharacterCard from "../components/CharacterCard";
-import { TextStyles } from "../styles/CharacterList.styles";
 
 interface Props {
   characters: Character[];

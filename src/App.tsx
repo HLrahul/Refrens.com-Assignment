@@ -5,7 +5,7 @@ import classes from "./App.module.css";
 import Navbar from "./components/Navbar";
 
 import HomePage from "./pages/HomePage";
-import ProfilePage from "./pages/ProfilePage";
+import ProfilePage from "./pages/ProfilePage.1";
 import EpisodesPage from "./pages/EpisodesPage";
 import LocationsPage from "./pages/LocationsPage";
 import CharactersPage from "./pages/CharactersPage";
