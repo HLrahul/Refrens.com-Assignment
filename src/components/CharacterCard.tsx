@@ -2,6 +2,7 @@ import {
   Box,
   Card,
   CardBody,
+  Flex,
   Heading,
   Icon,
   Image,
@@ -31,7 +32,11 @@ export default function CharacterCard({ character }: { character: Character }) {
   const CardSize = useBreakpointValue({ base: "sm", md: "md" });
 
   return (
-    <Card direction={{ base: "column", sm: "row" }} size={CardSize} css={CardStyles}>
+    <Card
+      direction={{ base: "column", sm: "row" }}
+      size={CardSize}
+      css={CardStyles}
+    >
       <Image
         objectFit="cover"
         maxW={{ base: "100%", sm: "200px" }}
@@ -54,18 +59,27 @@ export default function CharacterCard({ character }: { character: Character }) {
             </Text>
           </Box>
 
-          <Box>
-            <Heading size="sm" color="grey">
-              Last Known Location:
-            </Heading>
-            <Text>{character.location.name}</Text>
-          </Box>
+          <Flex>
+            <Box flex="1 1 50%">
+              <Heading size="sm" color="grey">
+                Gender:
+              </Heading>
+              <Text>{character.gender}</Text>
+            </Box>
+
+            <Box flex="1 1 50%">
+              <Heading size="sm" color="grey">
+                Origin:
+              </Heading>
+              <Text>{character.origin.name}</Text>
+            </Box>
+          </Flex>
 
           <Box>
             <Heading size="sm" color="grey">
-                First seen in:
+              Last known location:
             </Heading>
-            <Text>{character.origin.name}</Text>
+            <Text>{character.location.name}</Text>
           </Box>
         </Stack>
       </CardBody>

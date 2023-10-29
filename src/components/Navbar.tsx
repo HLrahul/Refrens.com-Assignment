@@ -15,7 +15,7 @@ import {
 import { Card, CardBody, CardHeader, CardFooter } from "@chakra-ui/react";
 import ThemeToggle from "./ui/ThemeToggle";
 
-import { CardStyles, HeaderStyles, CardFooterStyles } from "./Navbar.styles";
+import { CardStyles, CardHeaderStyles, CardFooterStyles, InputLeftElementStyles, CardBodyStyles, HamburgerIconStyles, InputStyle } from "./Navbar.styles";
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,9 +26,9 @@ export default function Navbar() {
 
   return (
     <Card direction={{ base: "row" }} size="md" css={CardStyles}>
-      <CardHeader css={HeaderStyles}>Rick and Morty</CardHeader>
+      <CardHeader css={CardHeaderStyles}>Rick and Morty</CardHeader>
 
-      <CardBody>
+      <CardBody css={CardBodyStyles}>
         <Flex gap="4" display={DisplayProp}>
           <Link to="/characters">Characters</Link>
           <Link to="/locations">Locations</Link>
@@ -59,21 +59,22 @@ export default function Navbar() {
 
       <CardFooter css={CardFooterStyles}>
         <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <Search2Icon color="gray.300" />
+          <InputLeftElement pointerEvents="none" css={InputLeftElementStyles} >
+            <Search2Icon color="gray.300" fontSize={InputSize}  />
           </InputLeftElement>
-          <Input htmlSize={6} size={InputSize} type="text" placeholder="Search" />
+          <Input css={InputStyle} size={InputSize} type="text" placeholder="Search" />
         </InputGroup>
 
         <ThemeToggle />
 
         <HamburgerIcon
+          css={HamburgerIconStyles}
           w={6}
           h={6}
           ml="auto"
           mr={2}
           mt={marginTop}
-          display={DisplayProp === "flex" ? "none" : "flex"}
+          display={{ base: "flex", md: "none" }}
           onClick={onOpen}
         />
       </CardFooter>
