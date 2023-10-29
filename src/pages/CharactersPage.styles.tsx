@@ -41,3 +41,16 @@ export const TextStyles = css`
         font-size: 1.1rem;
     }
 `
+
+export const ScrollUpIconButtonStyles = css`
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+
+    z-index: 2;
+
+    @media (min-width: 768px) {
+        bottom: 2rem;
+        right: 2rem;
+    }
+`
