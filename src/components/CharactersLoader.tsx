@@ -3,6 +3,7 @@ import { Spinner } from "@chakra-ui/react";
 const CharactersLoader = () => {
   return (
     <div
+      role="progressbar"
       style={{
         height: "80vh",
         width: "100%",

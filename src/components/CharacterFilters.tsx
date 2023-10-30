@@ -75,7 +75,7 @@ const CharacterFilters = ({
 
   return (
     <>
-      <Button onClick={onOpen}>Filter</Button>
+      <Button role="button" onClick={onOpen}>Filter</Button>
 
       <Modal
         isOpen={isOpen || isModalOpen}
@@ -157,12 +157,17 @@ const CharacterFilters = ({
                       <FormLabel fontSize="sm" textAlign="center">
                         Species
                       </FormLabel>
-                      <Input
+                      <Select
                         name="species"
                         value={filter.species}
                         onChange={handleSpeciesChange}
                         size="sm"
-                      />
+                      >
+                        <option value="">All</option>
+                        <option value="Human">Human</option>
+                        <option value="Alien">Alien</option>
+                        <option value="Robot">Robot</option>
+                      </Select>
                     </FormControl>
 
                     <FormControl mb={2} maxW="100%">

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Flex, useBreakpointValue, useDisclosure } from "@chakra-ui/react";
+import { Flex, useDisclosure, useMediaQuery } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
 import {
@@ -20,8 +20,10 @@ import { CardStyles, CardHeaderStyles, CardFooterStyles, CardBodyStyles, Hamburg
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const marginTop = useBreakpointValue({ base: "1", md: "2" });
-  const DisplayProp = useBreakpointValue({ base: "none", md: "flex" });
+  const isSmallScreen = useMediaQuery("(max-width: 767px)");
+
+  const marginTop = isSmallScreen ? "1" : "2";
+  const displayProp = isSmallScreen ? "flex" : "none";
 
   return (
     <Card direction={{ base: "row" }} size="md" css={CardStyles}>
@@ -30,12 +32,24 @@ export default function Navbar() {
       </Link>
 
       <CardBody css={CardBodyStyles}>
-        <Flex gap="4" display={DisplayProp}>
-          <Link to="/characters">Characters</Link>
-          <Link to="/locations" style={{ pointerEvents: "none", opacity: 0.5 }}>
+        <Flex gap="4" display={displayProp}>
+          <Link title="Characters" role="link" to="/characters">
+            Characters
+          </Link>
+          <Link
+            title="Locations"
+            role="link"
+            to="/locations"
+            style={{ pointerEvents: "none", opacity: 0.5 }}
+          >
             Locations
           </Link>
-          <Link to="/episodes" style={{ pointerEvents: "none", opacity: 0.5 }}>
+          <Link
+            title="Episodes"
+            role="link"
+            to="/episodes"
+            style={{ pointerEvents: "none", opacity: 0.5 }}
+          >
             Episodes
           </Link>
         </Flex>
@@ -43,8 +57,8 @@ export default function Navbar() {
 
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
+        <DrawerContent role="Menu">
+          <DrawerCloseButton role="button" name="Close" />
           <DrawerHeader>Menu</DrawerHeader>
           <DrawerBody>
             <Stack spacing={4}>
@@ -74,13 +88,15 @@ export default function Navbar() {
         <ThemeToggle />
 
         <HamburgerIcon
+          role="button"
+          name="Open menu"
           css={HamburgerIconStyles}
           w={6}
           h={6}
           ml="auto"
           mr={2}
           mt={marginTop}
-          display={{ base: "flex", md: "none" }}
+          display={isSmallScreen ? "none" : "flex"}
           onClick={onOpen}
         />
       </CardFooter>

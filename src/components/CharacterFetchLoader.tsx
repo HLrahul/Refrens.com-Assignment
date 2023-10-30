@@ -13,7 +13,7 @@ export default function CharacterFetchLoader() {
         alignItems: "center",
       }}
     >
-      <Spinner size="sm" />
+      <Spinner role="status" aria-label="Loading" aria-busy size="sm" />
     </div>
   );
 }

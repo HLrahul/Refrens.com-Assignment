@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Container, Heading, Input, InputGroup, InputLeftElement, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Container, Heading, Input, InputGroup, InputLeftElement, Text, useMediaQuery } from "@chakra-ui/react";
 
 import {
   ConatinerStyles,
@@ -17,7 +17,6 @@ import { Search2Icon } from "@chakra-ui/icons";
 import { InputLeftElementStyles, InputStyle } from "../styles/Navbar.styles";
 
 import CharactersList from "../components/CharacterList";
-// import CharactersError from "../components/CharactersError";
 import CharactersLoader from "../components/CharactersLoader";
 import CharacterFilters from "../components/CharacterFilters";
 import CharacterFetchLoader from "../components/CharacterFetchLoader";
@@ -113,7 +112,8 @@ export default function CharactersPage() {
     });
   };
 
-  const TextSize = useBreakpointValue({ base: "sm", md: "md" });
+  const isSmallScreen = useMediaQuery("(max-width: 767px)");
+  const TextSize = isSmallScreen ? "sm" : "md"; 
 
   return (
     <>

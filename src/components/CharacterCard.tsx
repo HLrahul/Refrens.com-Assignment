@@ -8,7 +8,6 @@ import {
   Image,
   Stack,
   Text,
-  useBreakpointValue,
 } from "@chakra-ui/react";
 
 import { css } from "@emotion/react";
@@ -30,13 +29,11 @@ const TextStyles = css`
 export default function CharacterCard({ character }: { character: Character }) {
   const Status = character.status === "Alive" ? "green.500" : "red.500";
 
-  const CardSize = useBreakpointValue({ base: "sm", md: "md" });
-
   return (
-    <Link to={`/profile/${character.id}`}>
+    <Link to={`/profile/${character.id}`} data-testid="character-card">
       <Card
         direction={{ base: "column", sm: "row" }}
-        size={CardSize}
+        size="sm"
         css={[CardStyles, { height: "100%" }]}
       >
         <Image

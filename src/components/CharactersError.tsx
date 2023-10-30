@@ -16,7 +16,9 @@ const CharactersError = ({ error }: Props) => {
         alignItems: "center",
       }}
     >
-      Error: {error?.message}
+      {error?.message
+        ? `Error: ${error.message}`
+        : "Error: Something went wrong."}
     </div>
   );
 };
