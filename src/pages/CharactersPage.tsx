@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 
-import { Container, Heading, Input, InputGroup, InputLeftElement, Text, useMediaQuery } from "@chakra-ui/react";
+import {
+  Container,
+  Heading,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 
 import {
   ConatinerStyles,
@@ -17,9 +25,9 @@ import { Search2Icon } from "@chakra-ui/icons";
 import { InputLeftElementStyles, InputStyle } from "../styles/Navbar.styles";
 
 import CharactersList from "../components/CharacterList";
-import CharactersLoader from "../components/CharactersLoader";
+import LoadingSpinner from "../components/ui/LoadingSpinner";
 import CharacterFilters from "../components/CharacterFilters";
-import CharacterFetchLoader from "../components/CharacterFetchLoader";
+import FetchLoader from "../components/ui/FetchLoader";
 import { FilterProps } from "../types";
 
 export default function CharactersPage() {
@@ -113,13 +121,13 @@ export default function CharactersPage() {
   };
 
   const isSmallScreen = useMediaQuery("(max-width: 767px)");
-  const TextSize = isSmallScreen ? "sm" : "md"; 
+  const TextSize = isSmallScreen ? "sm" : "md";
 
   return (
     <>
       <ArrowUpButton onClick={handleScrollUp} />
 
-      {isLoading && <CharactersLoader />}
+      {isLoading && <LoadingSpinner />}
 
       <Container css={ConatinerStyles}>
         <Heading css={HeadingStyles}>Rick and Morty Characters</Heading>
@@ -146,7 +154,7 @@ export default function CharactersPage() {
 
       <CharactersList characters={filteredCharacters} />
 
-      {isFetchingNextPage && <CharacterFetchLoader />}
+      {isFetchingNextPage && <FetchLoader />}
 
       {error && <div>{JSON.stringify(error)}</div>}
     </>

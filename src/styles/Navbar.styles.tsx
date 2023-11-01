@@ -6,7 +6,7 @@ export const CardStyles = css`
   border-radius: 0%;
   top: 0;
   position: sticky;
-  z-index: 2;
+  z-index: 99;
 
   margin: auto;
 

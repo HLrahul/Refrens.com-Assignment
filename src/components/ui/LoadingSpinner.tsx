@@ -1,19 +1,20 @@
 import { Spinner } from "@chakra-ui/react";
 
-export default function CharacterFetchLoader() {
+const LoadingSpinner = () => {
   return (
     <div
+      role="progressbar"
       style={{
-        position: "absolute",
-        height: "10vh",
+        height: "80vh",
         width: "100%",
-        padding: "10px 0px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <Spinner role="status" aria-label="Loading" aria-busy size="sm" />
+      <Spinner size="xl" />
     </div>
   );
-}
+};
+
+export default LoadingSpinner;

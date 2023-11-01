@@ -1,11 +1,11 @@
-import "@testing-library/jest-dom"
+import "@testing-library/jest-dom";
 
 import { render } from "@testing-library/react";
-import CharacterFetchLoader from "../../components/CharacterFetchLoader";
+import FetchLoader from "../../components/ui/FetchLoader";
 
-describe("CharacterFetchLoader", () => {
+describe("FetchLoader", () => {
   it("renders the component with the correct props", () => {
-    const { getByRole } = render(<CharacterFetchLoader />);
+    const { getByRole } = render(<FetchLoader />);
 
     const spinner = getByRole("status");
     expect(spinner).toBeInTheDocument();

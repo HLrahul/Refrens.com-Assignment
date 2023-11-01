@@ -15,7 +15,13 @@ import {
 import { Card, CardBody, CardHeader, CardFooter } from "@chakra-ui/react";
 import ThemeToggle from "./ui/ThemeToggle";
 
-import { CardStyles, CardHeaderStyles, CardFooterStyles, CardBodyStyles, HamburgerIconStyles } from "../styles/Navbar.styles";
+import {
+  CardStyles,
+  CardHeaderStyles,
+  CardFooterStyles,
+  CardBodyStyles,
+  HamburgerIconStyles,
+} from "../styles/Navbar.styles";
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -36,20 +42,10 @@ export default function Navbar() {
           <Link title="Characters" role="link" to="/characters">
             Characters
           </Link>
-          <Link
-            title="Locations"
-            role="link"
-            to="/locations"
-            style={{ pointerEvents: "none", opacity: 0.5 }}
-          >
+          <Link title="Locations" role="link" to="/locations">
             Locations
           </Link>
-          <Link
-            title="Episodes"
-            role="link"
-            to="/episodes"
-            style={{ pointerEvents: "none", opacity: 0.5 }}
-          >
+          <Link title="Episodes" role="link" to="/episodes">
             Episodes
           </Link>
         </Flex>
@@ -65,18 +61,10 @@ export default function Navbar() {
               <Link to="/characters" onClick={onClose}>
                 Characters
               </Link>
-              <Link
-                to="/locations"
-                onClick={onClose}
-                style={{ pointerEvents: "none", opacity: 0.5 }}
-              >
+              <Link to="/locations" onClick={onClose}>
                 Locations
               </Link>
-              <Link
-                to="/episodes"
-                onClick={onClose}
-                style={{ pointerEvents: "none", opacity: 0.5 }}
-              >
+              <Link to="/episodes" onClick={onClose}>
                 Episodes
               </Link>
             </Stack>
