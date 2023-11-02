@@ -69,14 +69,12 @@ export default function LocationsPage() {
     <>
       <ArrowUpButton onClick={handleScrollUp} />
 
-      {isLoading && <LoadingSpinner />}
-
       <Container css={ConatinerStyles}>
         <Heading css={HeadingStyles}>Every Locations in Rick and Morty</Heading>
         <Text size={TextSize} css={TextStyles}>
           Scroll Down to load more Locations.{" "}
-        </Text>
         <ArrowDownButton onClick={handleScrollDown} />
+        </Text>
 
         <InputGroup>
           <InputLeftElement pointerEvents="none" css={InputLeftElementStyles}>
@@ -91,6 +89,8 @@ export default function LocationsPage() {
           />
         </InputGroup>
       </Container>
+
+      {isLoading && <LoadingSpinner />}
 
       <LocationsList locations={filteredLocations} />
 

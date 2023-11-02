@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 
-import { Character, Location, Episode, Resident } from "../types";
+import { Character, Location, Resident } from "../types";
 import {
   Box,
   Button,
@@ -30,6 +30,11 @@ import {
   fetchLocation,
   fetchResidents,
 } from "../api/api";
+
+export interface Episode {
+  name: string;
+  url: string;
+}
 
 export default function ProfilePage() {
   const { id } = useParams<{ id: string }>();
