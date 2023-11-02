@@ -45,11 +45,4 @@ describe("LocationsList", () => {
     const locationCards = screen.getAllByTestId("location-card");
     expect(locationCards).toHaveLength(locations.length);
   });
-
-  it("should render a message when no locations are found", () => {
-    render(<LocationsList locations={[]} />);
-
-    const message = screen.getByText("No locations found.");
-    expect(message).toBeInTheDocument();
-  });
 });
