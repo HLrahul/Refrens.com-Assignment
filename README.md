@@ -59,4 +59,11 @@ npm t
 
 ### Optional
 - [x] Locations page
+- [x] Search a location using name
+- [x] See the residents in the location
+
+<br />
+
 - [x] Episodes page
+- [x] Search for a episode using name
+- [x] See the characters of the episode
