@@ -58,5 +58,5 @@ npm t
   <br />
 
 ### Optional
-- [ ] Locations page
-- [ ] Episodes page
+- [x] Locations page
+- [x] Episodes page
