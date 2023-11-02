@@ -14,7 +14,7 @@ describe("FetchLoader", () => {
 
     const container = spinner.parentElement;
     expect(container).toHaveStyle({
-      position: "absolute",
+      position: "relative",
       height: "10vh",
       width: "100%",
       padding: "10px 0px",

@@ -19,11 +19,13 @@ export const EpisodesList = ({ episodes }: EpisodesListProps) => {
       css={GridStyles}
     >
       {episodes.map((episode) => (
-        <EpisodeCard
-          key={episode.id}
-          episodeName={episode.name}
-          characters={episode.characters}
-        />
+        <div role="article" key={episode.id}>
+          <EpisodeCard
+            key={episode.id}
+            episodeName={episode.name}
+            characters={episode.characters}
+          />
+        </div>
       ))}
     </SimpleGrid>
   );

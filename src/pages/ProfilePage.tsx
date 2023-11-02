@@ -186,9 +186,13 @@ export default function ProfilePage() {
                     <ModalCloseButton />
                     <ModalBody>
                       <Stack>
-                        {residents.map((resident) => (
-                          <Text key={resident.url}>{resident.name}</Text>
-                        ))}
+                        {residents.length === 0 ? (
+                          <Text>No residents found</Text>
+                        ) : (
+                          residents.map((resident) => (
+                            <Text key={resident.url}>{resident.name}</Text>
+                          ))
+                        )}
                       </Stack>
                     </ModalBody>
                     <ModalFooter>
@@ -215,9 +219,13 @@ export default function ProfilePage() {
                     <ModalCloseButton />
                     <ModalBody>
                       <Stack>
-                        {episodes.map((episode) => (
-                          <Text key={episode.url}>{episode.name}</Text>
-                        ))}
+                        {episodes.length === 0 ? (
+                          <Text>No episodes found</Text>
+                        ) : (
+                          episodes.map((episode) => (
+                            <Text key={episode.url}>{episode.name}</Text>
+                          ))
+                        )}
                       </Stack>
                     </ModalBody>
                     <ModalFooter>
