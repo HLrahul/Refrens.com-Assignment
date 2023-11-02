@@ -1,27 +1,62 @@
-# React + TypeScript + Vite
+# Rick & Morty - Refrens Assignment
+### A web application displaying Characters' profile from Rick and Morty API using `REST` protocol.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<br />
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+# To Run the project 
+### Steo 1:
+```
+git clone https://github.com/HLrahul/Refrens.com-Assignment.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Step 2:
+```
+cd Refren.com-Assignment
+```
+```
+npm i
+```
+
+### Step 3:
+```
+npm run dev
+```
+
+### Optional: (Testing)
+```
+npm t
+```
+
+<br />
+
+## Stack
+- React + TypeScript
+- Chakra UI
+- Emotion (CSSinJS)
+- Zustand (State Management)
+- React Query + Axios (Data Fetching)
+- ESLint
+- Jest + React Testing Library
+
+<br />
+
+## Objectives
+### Characters Page
+- [x] Display Characters
+- [x] Search Characters with Name
+- [x] Filter Characters
+- [x] Navigate to individual Characters profile
+
+<br />
+
+### Profiles' Page
+- [x] Characters Picture
+- [x] Characters Information
+- [x] Origin and Current location details
+- [x] Name of the Episodes the character featured.
+
+  <br />
+
+### Optional
+- [ ] Locations page
+- [ ] Episodes page
