@@ -7,7 +7,6 @@ import {
   Button,
   Card,
   CardBody,
-  CardFooter,
   Flex,
   Heading,
   Icon,
@@ -25,7 +24,12 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { TextStyles } from "../styles/ProfilePage.styles";
-import { fetchCharacter, fetchEpisodes, fetchLocation, fetchResidents } from "../api/api";
+import {
+  fetchCharacter,
+  fetchEpisodes,
+  fetchLocation,
+  fetchResidents,
+} from "../api/api";
 
 export default function ProfilePage() {
   const { id } = useParams<{ id: string }>();
@@ -83,27 +87,28 @@ export default function ProfilePage() {
   return (
     <div
       style={{
-        height: "80vh",
+        minHeight: "80vh",
         width: "100%",
+
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        padding: "2rem",
       }}
     >
       <Card
-        minW="lg"
         direction={{ base: "column", sm: "row" }}
         overflow="hidden"
         variant="outline"
       >
+        <Image
+          objectFit="cover"
+          maxW={{ base: "100%", sm: "300px" }}
+          src={character.image}
+          alt={character.name}
+        />
         <CardBody flex="0 0 0%" style={{ width: "auto" }}>
-          <Image
-            objectFit="cover"
-            maxW={{ base: "100%", sm: "200px" }}
-            src={character.image}
-            alt={character.name}
-          />
-          <Stack mt="6" spacing="3">
+          <Stack spacing="0">
             <Heading size="lg">{character.name}</Heading>
 
             <Text css={TextStyles}>
@@ -116,115 +121,111 @@ export default function ProfilePage() {
               {character.status} - {character.species}
             </Text>
           </Stack>
+
+          <Stack spacing="3" mt="3">
+            <Flex gap="5">
+              <Box flex="1 1 50%">
+                <Heading size="sm" color="grey">
+                  Gender:
+                </Heading>
+                <Text>{character.gender}</Text>
+              </Box>
+
+              <Box flex="1 1 100%">
+                <Heading size="sm" color="grey">
+                  Origin:
+                </Heading>
+                <Text>{character.origin.name}</Text>
+              </Box>
+            </Flex>
+
+            <Flex gap="5">
+              <Box flex="1 1 50%">
+                <Heading size="sm" color="grey">
+                  Last known location:
+                </Heading>
+                <Text>{character.location.name}</Text>
+              </Box>
+            </Flex>
+
+            <Flex gap="5">
+              <Box flex="1 1 50%">
+                <Heading size="sm" color="grey">
+                  Origin:
+                </Heading>
+                <Text>{character.origin.name}</Text>
+              </Box>
+            </Flex>
+
+            <Flex gap="5">
+              <Box flex="1 1 50%">
+                <Heading size="sm" color="grey">
+                  Dimension:
+                </Heading>
+                <Text>{location && location.dimension}</Text>
+              </Box>
+            </Flex>
+
+            <Flex gap="5">
+              <Box flex="1 1 50%">
+                <Button onClick={residentsDisclosure.onOpen}>Residents</Button>
+                <Modal
+                  isOpen={residentsDisclosure.isOpen}
+                  onClose={residentsDisclosure.onClose}
+                  scrollBehavior="inside"
+                  isCentered
+                >
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>Residents</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                      <Stack>
+                        {residents.map((resident) => (
+                          <Text key={resident.url}>{resident.name}</Text>
+                        ))}
+                      </Stack>
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button onClick={residentsDisclosure.onClose}>
+                        Close
+                      </Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
+              </Box>
+
+              <Box flex="1 1 50%">
+                <Button onClick={episodesDisclosure.onOpen}>Episodes</Button>
+
+                <Modal
+                  isOpen={episodesDisclosure.isOpen}
+                  onClose={episodesDisclosure.onClose}
+                  scrollBehavior="inside"
+                  isCentered
+                >
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>Episodes</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                      <Stack>
+                        {episodes.map((episode) => (
+                          <Text key={episode.url}>{episode.name}</Text>
+                        ))}
+                      </Stack>
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button onClick={episodesDisclosure.onClose}>
+                        Close
+                      </Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
+              </Box>
+            </Flex>
+          </Stack>
         </CardBody>
-
-        <CardFooter
-          gap={6}
-          style={{
-            width: "fill-available",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <Flex gap="5">
-            <Box flex="1 1 50%">
-              <Heading size="sm" color="grey">
-                Gender:
-              </Heading>
-              <Text>{character.gender}</Text>
-            </Box>
-
-            <Box flex="1 1 100%">
-              <Heading size="sm" color="grey">
-                Origin:
-              </Heading>
-              <Text>{character.origin.name}</Text>
-            </Box>
-          </Flex>
-
-          <Flex gap="5">
-            <Box flex="1 1 50%">
-              <Heading size="sm" color="grey">
-                Last known location:
-              </Heading>
-              <Text>{character.location.name}</Text>
-            </Box>
-          </Flex>
-
-          <Flex gap="5">
-            <Box flex="1 1 50%">
-              <Heading size="sm" color="grey">
-                Origin:
-              </Heading>
-              <Text>{character.origin.name}</Text>
-            </Box>
-          </Flex>
-
-          <Flex gap="5">
-            <Box flex="1 1 50%">
-              <Heading size="sm" color="grey">
-                Dimension:
-              </Heading>
-              <Text>{location && location.dimension}</Text>
-            </Box>
-
-            <Box flex="1 1 50%">
-              <Button onClick={residentsDisclosure.onOpen}>Residents</Button>
-
-              <Modal
-                isOpen={residentsDisclosure.isOpen}
-                onClose={residentsDisclosure.onClose}
-                scrollBehavior="inside"
-                isCentered
-              >
-                <ModalOverlay />
-                <ModalContent>
-                  <ModalHeader>Residents</ModalHeader>
-                  <ModalCloseButton />
-                  <ModalBody>
-                    <Stack>
-                      {residents.map((resident) => (
-                        <Text key={resident.url}>{resident.name}</Text>
-                      ))}
-                    </Stack>
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button onClick={residentsDisclosure.onClose}>Close</Button>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
-            </Box>
-          </Flex>
-
-          <Flex gap="5">
-            <Box flex="1 1 50%">
-              <Button onClick={episodesDisclosure.onOpen}>Episodes</Button>
-
-              <Modal
-                isOpen={episodesDisclosure.isOpen}
-                onClose={episodesDisclosure.onClose}
-                scrollBehavior="inside"
-                isCentered
-              >
-                <ModalOverlay />
-                <ModalContent>
-                  <ModalHeader>Episodes</ModalHeader>
-                  <ModalCloseButton />
-                  <ModalBody>
-                    <Stack>
-                      {episodes.map((episode) => (
-                        <Text key={episode.url}>{episode.name}</Text>
-                      ))}
-                    </Stack>
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button onClick={episodesDisclosure.onClose}>Close</Button>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
-            </Box>
-          </Flex>
-        </CardFooter>
       </Card>
     </div>
   );

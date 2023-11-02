@@ -127,8 +127,6 @@ export default function CharactersPage() {
     <>
       <ArrowUpButton onClick={handleScrollUp} />
 
-      {isLoading && <LoadingSpinner />}
-
       <Container css={ConatinerStyles}>
         <Heading css={HeadingStyles}>Rick and Morty Characters</Heading>
         <Text size={TextSize} css={TextStyles}>
@@ -151,6 +149,8 @@ export default function CharactersPage() {
 
         <CharacterFilters filter={filter} onFilterChange={handleFilterChange} />
       </Container>
+
+      {isLoading && <LoadingSpinner />}
 
       <CharactersList characters={filteredCharacters} />
 

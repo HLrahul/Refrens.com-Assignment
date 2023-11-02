@@ -1,6 +1,5 @@
-import { Card, CardFooter, CardHeader } from "@chakra-ui/react";
+import { Box, Flex} from "@chakra-ui/react";
 
-import { CardStyles } from "../styles/Navbar.styles";
 import { LocationCharactersButton } from "./ui/LocationCharactersButton";
 
 type LocationCardProps = {
@@ -10,13 +9,12 @@ type LocationCardProps = {
 
 export default function LocationCard ( { locationName, residents } : LocationCardProps ) {
     return (
-      <Card direction={{ base: "column", sm: "row" }}
-        size="sm"
-        css={[CardStyles, { height: "100%" }]}>
-        <CardHeader>{locationName}</CardHeader>
-        <CardFooter>
-          <LocationCharactersButton residents={residents} />
-        </CardFooter>
-      </Card>
+      <Flex direction={{ base: "column", sm: "row" }} align="center" justify="space-between" gap={5} p="6" border="1px" borderRadius="lg" >
+        <Box fontWeight="semibold" as="h4" lineHeight="tight" noOfLines={1}>
+          {locationName}
+        </Box>
+
+        <LocationCharactersButton residents={residents} />
+      </Flex>
     );
 }

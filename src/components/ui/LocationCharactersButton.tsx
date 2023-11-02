@@ -64,9 +64,15 @@ export const LocationCharactersButton = ({
               </Button>
             ) : (
               <Stack>
-                {data?.map((resident: Resident, index: number) => (
-                  <Text key={`${resident.name}-${index}`}>{resident.name}</Text>
-                ))}
+                {data?.length === 0 ? (
+                  <Text>No Residents found</Text>
+                ) : (
+                  data?.map((resident: Resident, index: number) => (
+                    <Text key={`${resident.name}-${index}`}>
+                      {resident.name}
+                    </Text>
+                  ))
+                )}
               </Stack>
             )}
           </ModalBody>
